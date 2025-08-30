@@ -6,7 +6,7 @@ import Text.Megaparsec (errorBundlePretty)
 
 main :: IO ()
 main = do
-  let expr = "def f x => if x < 2 then x else f (x - 1) + f (x - 2); f 10;"
+  let expr = "def f x => x + 1;f 1;"
       env = Map.empty :: Env
 
   case parseMutilExpr expr of

@@ -115,4 +115,4 @@ parseExpr :: String -> Either (ParseErrorBundle String Void) Expr
 parseExpr = parse (sc *> expr <* eof) ""
 
 parseMutilExpr :: String -> Either (ParseErrorBundle String Void) [Expr]
-parseMutilExpr = parse (sc *> expr `sepBy1` semicolon <* eof) ""
+parseMutilExpr = parse (sc *> many (try expr <* (semicolon <|> (newline >> return ()))) <* eof) ""
